@@ -1,98 +1,105 @@
 # AI Employee Framework
 
-**Stop writing instructions. Start hiring an employee.**
+**Stop writing instructions. Start hiring a senior thought partner.**
 
-A behavioral framework that transforms AI coding agents from passive instruction-followers into autonomous, judgment-driven workers. Works with any AI coding tool — [Gemini CLI](https://github.com/google-gemini/gemini-cli), [Claude Code](https://github.com/anthropics/claude-code), Cursor, GitHub Copilot, Windsurf, and more.
+A behavioral framework that transforms AI coding agents from passive instruction-followers into autonomous, judgment-driven workers. Works with any AI coding tool — [Google Antigravity IDE](https://antigravity.google), [Gemini CLI](https://github.com/google-gemini/gemini-cli), [Claude Code](https://github.com/anthropics/claude-code), Cursor, GitHub Copilot, Windsurf, and more.
 
 ---
 
 ## The Problem
 
-Most AI agent configurations are instruction lists: "do this, don't do that, format like this." They produce compliant but brittle behavior — the agent follows rules but can't think.
+Most AI agents are **compliant yes-men**:
+- When you ask how to build a feature, they design a massive distributed spaceship when you only need a bicycle.
+- They never hit the "brake pedal" to question whether an architecture makes sense for your current stage.
+- They force *you* to realize weeks later that you've over-engineered an MVP for a product with zero users.
 
-**AI Employee Framework** takes a different approach. Instead of telling the AI *what to do*, it teaches the AI *how to think* — using the same cognitive patterns a great employee uses:
+**AI Employee Framework** solves this. Instead of acting like a passive ticket-taker, it teaches the AI agent to think like a **pragmatic senior employee and sparring partner**:
+- **Stage-Awareness:** Evaluates whether you're at Day 0 (validation) or Scale, preventing premature complexity.
+- **Sparring Partner Instinct (Brake Pedal):** Challenges premature abstractions and pushes back with simpler alternatives.
+- **Scope Slicing Protocol:** Mandates breaking every initiative into **Phase 1 (MVP in 24-48h)** vs Phase 2 vs Phase 3 (Deferred).
+- **Autonomous Ownership:** Uses judgment to classify decisions by risk and executes safe steps without hand-holding.
 
-- Observe the situation before acting
-- Detect risks and anomalies proactively
-- Use judgment to classify decisions by risk level
-- Escalate when something is beyond its authority
-- Adapt when things go wrong
+---
 
 ## Architecture
 
-The framework has two layers:
+The framework operates in two cooperating layers:
 
 ```
-┌─────────────────────────────────────────────────────┐
-│                   PERSONA LAYER                      │
-│            (domain-specific behavior)                │
-│                                                      │
-│   ┌───────────┐ ┌──────────┐ ┌────────────────────┐ │
-│   │ Developer │ │ Marketer │ │ Content Writer ... │ │
-│   └───────────┘ └──────────┘ └────────────────────┘ │
-├─────────────────────────────────────────────────────┤
-│                    CORE LAYER                        │
-│           (8-Engine Behavioral Cycle)                │
-│                                                      │
-│   OBSERVE → UNDERSTAND → DETECT → JUDGE             │
-│       → ACT → VERIFY → ADAPT → ESCALATE             │
-└─────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────┐
+│                             PERSONA LAYER                               │
+│                      (domain-specific judgment)                         │
+│                                                                         │
+│   ┌───────────┐ ┌─────────────────┐ ┌───────────┐ ┌──────────┐ ┌──────┐ │
+│   │ Tech Lead │ │ Product Partner │ │ Developer │ │ Marketer │ │  ... │ │
+│   └───────────┘ └─────────────────┘ └───────────┘ └──────────┘ └──────┘ │
+├─────────────────────────────────────────────────────────────────────────┤
+│                              CORE LAYER                                 │
+│        (8-Engine Cycle + Sparring Partner + Scope Slicing)              │
+│                                                                         │
+│   OBSERVE → UNDERSTAND (Stage-Awareness) → DETECT (Over-Engineering)    │
+│       → JUDGE → ACT (Scope Sliced) → VERIFY → ADAPT → ESCALATE/CHALLENGE │
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
-**Core Layer** — Always active. Defines *how* the AI thinks: an 8-engine cognitive cycle that runs on every task. Not a rigid checklist, but a natural thinking process with adaptive strictness based on risk level.
+**Core Layer** — Always active. Defines *how* the AI thinks: an 8-engine cognitive cycle with Stage-Awareness and the Scope Slicing Protocol.
 
-**Persona Layer** — On-demand. Defines *what* the AI pays attention to in a specific domain. A Developer persona watches for code smells and architecture issues. A Marketer persona watches for funnel leaks and budget waste. Personas are additive — they sharpen the core engines, never override them.
+**Persona Layer** — On-demand. Sharpened lenses for specific domains (e.g., Tech Lead for stage-appropriate architecture, Product Partner for ruthless MVP validation, Developer for pragmatic code).
+
+---
 
 ## Quick Start
 
-### 1. Copy the framework into your project
+### 1. Copy into your project
 
 ```bash
-# Clone the repo
+# Clone the repository
 git clone https://github.com/aldhydheriz/ai-employee-framework.git
 
-# Copy into your project's agent config directory
-cp -r ai-employee-framework/rules/ your-project/.agents/rules/
-cp -r ai-employee-framework/skills/ your-project/.agents/skills/
+# Set up project entry point and personas
+cp ai-employee-framework/rules/ai-employee.md your-project/AGENTS.md
+mkdir -p your-project/.agents/rules your-project/.agents/skills
+cp ai-employee-framework/rules/ai-employee.md your-project/.agents/rules/
+cp -r ai-employee-framework/skills/persona your-project/.agents/skills/
 ```
 
 ### 2. Point your AI tool at it
 
-See [Platform Setup](#platform-setup) for tool-specific instructions. Most tools auto-discover files in `.agents/`, `.cursor/`, or similar directories.
+Placing `AGENTS.md` at your repository root guarantees that modern AI coding tools (Google Antigravity IDE, Cursor, Gemini CLI, Claude Code) unconditionally inject the framework rules into the system prompt on every session.
 
-### 3. Start working
+See [Platform Setup](#platform-setup) for platform-specific details.
 
-The framework activates automatically. Your AI agent will now:
-- **Observe** context before jumping to code
-- **Detect** risks you didn't ask about
-- **Judge** whether to act autonomously or ask you first
-- **Escalate** with context + recommendation, never raw problems
+---
 
 ## Available Personas
 
 | Persona | Domain | What it adds |
 |---------|--------|-------------|
-| **[Developer](skills/persona/references/developer.md)** | Software engineering | Code quality signals, architecture red flags, debugging methodology, refactoring judgment |
-| **[Content Writer](skills/persona/references/content-writer.md)** | Content creation | Brand voice matching, SEO awareness, audience-appropriate language, structural clarity |
-| **[Marketer](skills/persona/references/marketer.md)** | Marketing & growth | Funnel analysis, budget judgment, attribution awareness, performance signal detection |
-| **[Data Analyst](skills/persona/references/data-analyst.md)** | Data & reporting | Statistical rigor, data quality detection, methodology transparency, actionable insights |
-| **[Designer](skills/persona/references/designer.md)** | UI/UX design | Usability signals, accessibility checks, visual consistency, mobile-first thinking |
+| **[Tech Lead](skills/persona/references/tech-lead.md)** | Architecture & Tech Strategy | Pragmatic architecture, Stage Gate checks, Boring Technology, Build vs Buy vs Defer |
+| **[Product Partner](skills/persona/references/product-partner.md)** | Product & Founder Sparring | Ruthless MVP pruning, value-first thinking, Day 0 sanity checks, CAC/LTV awareness |
+| **[Developer](skills/persona/references/developer.md)** | Software Engineering | Staff-level pragmatism, strict YAGNI, clean code, boundary tests, eliminating bloat |
+| **[Marketer](skills/persona/references/marketer.md)** | Marketing & Growth | Funnel analysis, budget judgment, attribution awareness, performance signal detection |
+| **[Content Writer](skills/persona/references/content-writer.md)** | Content Creation | Brand voice matching, SEO awareness, audience-appropriate language, structural clarity |
+| **[Data Analyst](skills/persona/references/data-analyst.md)** | Data & Reporting | Statistical rigor, data quality detection, methodology transparency, actionable insights |
+| **[Designer](skills/persona/references/designer.md)** | UI/UX Design | Usability signals, accessibility checks, visual consistency, mobile-first thinking |
 
 > **Creating your own persona?** See the [Creating Personas](docs/CREATING_PERSONAS.md) guide.
+
+---
 
 ## Platform Setup
 
 <details>
-<summary><strong>Gemini CLI / Google Antigravity IDE</strong></summary>
+<summary><strong>Google Antigravity IDE / Gemini CLI</strong></summary>
 
-Copy directly to your project's `.agents/` directory:
+Place `AGENTS.md` directly at your project root:
 
 ```bash
-cp -r rules/ your-project/.agents/rules/
+cp rules/ai-employee.md your-project/AGENTS.md
 cp -r skills/ your-project/.agents/skills/
 ```
 
-The `.agents/` directory is automatically discovered. No additional configuration needed.
+Antigravity IDE walks up to your repository root and loads `AGENTS.md` into the system prompt `<user_rules>` unconditionally. Skills inside `.agents/skills/` are loaded on-demand.
 
 See [examples/antigravity/](examples/antigravity/) for details.
 </details>
@@ -100,93 +107,76 @@ See [examples/antigravity/](examples/antigravity/) for details.
 <details>
 <summary><strong>Claude Code</strong></summary>
 
-Claude Code uses a `CLAUDE.md` file. You can reference the framework files or inline them:
+Claude Code uses `CLAUDE.md`:
 
 ```bash
-# Option 1: Copy to project root and reference
-cp -r rules/ your-project/rules/
+cp rules/ai-employee.md your-project/CLAUDE.md
 cp -r skills/ your-project/skills/
-
-# Add to CLAUDE.md
-echo "Read and follow the behavioral framework in rules/ai-employee.md" >> your-project/CLAUDE.md
 ```
-
-See [examples/generic/](examples/generic/) for details.
 </details>
 
 <details>
 <summary><strong>Cursor</strong></summary>
 
-Cursor uses `.cursor/rules/` for project-level rules:
+Cursor uses `.cursorrules` or `.cursor/rules/`:
 
 ```bash
 mkdir -p your-project/.cursor/rules/
-cp rules/ai-employee.md your-project/.cursor/rules/
+cp rules/ai-employee.md your-project/.cursor/rules/ai-employee.md
+cp rules/ai-employee.md your-project/.cursorrules
 cp -r skills/ your-project/.cursor/skills/
 ```
-
-See [examples/cursor/](examples/cursor/) for details.
 </details>
 
 <details>
 <summary><strong>GitHub Copilot</strong></summary>
 
-Copilot uses `.github/copilot-instructions.md`:
-
 ```bash
 mkdir -p your-project/.github/
-# Combine the core rule into copilot-instructions.md
-cat rules/ai-employee.md > your-project/.github/copilot-instructions.md
+cp rules/ai-employee.md your-project/.github/copilot-instructions.md
 ```
-
-See [examples/copilot/](examples/copilot/) for details.
 </details>
 
-<details>
-<summary><strong>Other tools</strong></summary>
-
-The framework is plain Markdown — it works with any AI tool that accepts system instructions or context files. See the [Generic Setup Guide](examples/generic/) for manual integration.
-</details>
+---
 
 ## How It's Different
 
-| Traditional AI Instructions | AI Employee Framework |
-|----------------------------|----------------------|
-| "Always use TypeScript" | OBSERVE existing patterns, DETECT inconsistencies, JUDGE whether to flag or fix |
-| "Ask before deleting files" | Risk classification: Low/Medium/High with clear examples per domain |
-| "Write tests for new code" | Developer persona: when to add tests, when not to, judgment guidelines |
-| Long list of do's and don'ts | 8-engine cognitive cycle that adapts to context |
-| Static rules | Adaptive strictness: relaxed for trivial tasks, strict for critical ones |
+| Traditional AI Assistants | AI Employee Framework |
+|---------------------------|----------------------|
+| **Yes-Man Execution:** Blindly designs 10-page enterprise architectures for Day 0 ideas | **Sparring Partner (Brake Pedal):** Questions premature complexity and proposes a 24-hour Phase 1 MVP |
+| **Monolithic Specs:** Dumps all future edge cases and scale mechanisms into one document | **Scope Slicing Protocol:** Strictly separates Phase 1 (MVP) from Phase 2 (Growth) and Phase 3 (Deferred) |
+| "Always use TypeScript / Write tests" | Stage-Awareness: Balances engineering rigor with business runway and current traction |
+| Stops at the first error or asks about trivial details | Autonomous ownership: Classifies risk (Low/Medium/High/Scope) and drives outcomes |
+
+---
 
 ## Project Structure
 
 ```
 ai-employee-framework/
 ├── rules/
-│   └── ai-employee.md              # Core 8-Engine Behavioral Cycle
+│   └── ai-employee.md              # Core 8-Engine Cycle + Sparring + Scope Slicing
 ├── skills/
 │   └── persona/
 │       ├── SKILL.md                 # Persona system orchestrator
 │       └── references/
-│           ├── developer.md         # Software engineering persona
-│           ├── content-writer.md    # Content creation persona
-│           ├── marketer.md          # Marketing & growth persona
-│           ├── data-analyst.md      # Data analysis persona
-│           └── designer.md          # UI/UX design persona
+│           ├── tech-lead.md         # Systems architecture & tech strategy
+│           ├── product-partner.md   # Product & founder sparring
+│           ├── developer.md         # Software engineering (Staff-level pragmatism)
+│           ├── marketer.md          # Growth & performance marketing
+│           ├── content-writer.md    # Content creation & brand voice
+│           ├── data-analyst.md      # Data analysis & metrics
+│           └── designer.md          # UI/UX & visual hierarchy
 ├── examples/                        # Platform-specific setup guides
 │   ├── antigravity/
 │   ├── cursor/
 │   ├── copilot/
 │   └── generic/
 └── docs/
-    ├── ARCHITECTURE.md              # Design philosophy
+    ├── ARCHITECTURE.md              # Design philosophy & cognitive cycle
     ├── CREATING_PERSONAS.md         # Guide to writing custom personas
     └── CONTRIBUTING.md              # Contribution guidelines
 ```
-
-## Contributing
-
-We welcome new personas, improvements to existing ones, and better documentation. See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines.
 
 ## License
 
@@ -194,4 +184,4 @@ MIT — see [LICENSE](LICENSE).
 
 ---
 
-Built by [@aldhydheriz](https://github.com/aldhydheriz). If this framework changes how you work with AI agents, give it a ⭐.
+Built by [@aldhydheriz](https://github.com/aldhydheriz).

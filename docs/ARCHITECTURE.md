@@ -1,132 +1,87 @@
-# Architecture
+# Architecture & Design Philosophy
 
 This document explains the design philosophy behind the AI Employee Framework — why it's structured this way and how the pieces work together.
+
+---
 
 ## Design Philosophy
 
 ### Why "Employee" and not "Assistant"?
 
-The word matters. An **assistant** waits for instructions. An **employee** takes ownership.
+The word matters. An **assistant** waits for instructions and complies unconditionally. An **employee** takes ownership and acts as a thought partner.
 
-The difference in behavior is significant:
-- An assistant stops when the instruction is complete. An employee checks if the *objective* was achieved.
+The behavioral differences are stark:
+- An assistant stops when the instruction is complete. An employee checks if the *underlying objective* was achieved.
+- An assistant is a "yes-man" that creates whatever complex thing you ask for. An employee uses **judgment**, hits the brake pedal when an idea is premature, and protects the team's runway.
 - An assistant reports problems. An employee reports problems *with solutions*.
-- An assistant follows rules. An employee uses *judgment*.
+- An assistant follows rules. An employee applies *context and stage-awareness*.
 
-This framework teaches AI agents to behave like the latter.
+This framework teaches AI agents to behave like a trusted senior colleague.
 
-### Why a cognitive cycle, not a rule list?
+### The Sparring Partner Principle (The Brake Pedal)
 
-Most AI agent configurations are instruction lists: "do X, don't do Y, always Z." This approach has fundamental limitations:
+The most destructive failure mode of modern AI coding agents is **runaway over-engineering**. Because LLMs are trained to be helpful and comprehensive, when a user asks:
+> *"How should we design our merchant system with custom domains and financial ledgers?"*
 
-1. **Rule lists are brittle.** They can't cover every situation. When the AI encounters something not in the list, it either halts or guesses.
-2. **Rule lists conflict.** "Always write tests" + "move fast" = confusion about which rule wins.
-3. **Rule lists don't compose.** Adding more rules doesn't make the AI smarter — it makes it slower and more confused.
+A standard AI immediately generates 10 pages of enterprise architecture: distributed event buses, double-entry ledger databases, automated webhook retries, and edge DNS pipelines — even if the user has **zero paying customers and only four master products**.
 
-A cognitive cycle solves these problems by teaching the AI *how to think*, not *what to think*. The 8 engines are a thinking process that can be applied to any situation, including ones not covered by explicit rules.
+A real senior human employee does not do this. A real employee steps back and says:
+> *"Wait. We have zero merchants today. Designing a multi-service architecture right now is premature optimization. Let's build a static Phase 1 MVP in 24 hours to validate demand first."*
 
-## The 8-Engine Cycle
+The AI Employee Framework embeds this **Sparring Partner & Anti-Overengineering instinct** into the core cognitive cycle.
 
-### Why 8?
+---
 
-The cycle was designed around the natural decision-making process of a competent professional:
+## The Upgraded 8-Engine Cycle
 
 ```
-OBSERVE  →  "What is the situation?"
-UNDERSTAND → "What is actually being asked?"
-DETECT   →  "Is anything wrong or risky?"
-JUDGE    →  "Can I handle this, or should I ask?"
-ACT      →  "Do the work."
-VERIFY   →  "Did it actually work?"
-ADAPT    →  "If not, try something else."
-ESCALATE →  "If I can't solve it, bring it to a human — with context."
+OBSERVE   →  "What is the situation and environment?"
+UNDERSTAND → "What is the real goal, and what MATURITY STAGE is this project in?"
+DETECT    →  "Is anything broken, missing, or OVER-ENGINEERED?"
+JUDGE     →  "Can I handle this, or must I challenge / escalate?"
+ACT       →  "Execute the thinnest viable slice (Phase 1 MVP)."
+VERIFY    →  "Did it work, and is it as simple as possible?"
+ADAPT     →  "If not, adjust and iterate."
+ESCALATE  →  "If beyond authority or premature, bring to human with recommendation."
 ```
 
-Each engine addresses a specific failure mode common in AI agents:
+### Stage-Awareness in UNDERSTAND
 
-| Engine | Prevents |
-|--------|----------|
-| OBSERVE | Jumping to action without reading context |
-| UNDERSTAND | Solving the literal request instead of the real need |
-| DETECT | Missing risks, inconsistencies, and opportunities |
-| JUDGE | Either asking about everything (slow) or deciding everything (dangerous) |
-| ACT | Stopping at the first error instead of trying alternatives |
-| VERIFY | Assuming success without checking |
-| ADAPT | Repeating failed strategies |
-| ESCALATE | Dumping raw problems without context or recommendations |
+Every task is contextualized by the project's maturity:
+- **Stage 0 (Idea & Validation / 0-1):** 0 to few users. Goal is fastest proof of value. Heavy infrastructure is an existential risk.
+- **Stage 1 (Traction & Growth):** PMF proven. Goal is reliability, removing bottlenecks, and selective automation.
+- **Stage 2 (Scale & Enterprise):** Volume justifies microservices, automated reconciliation, and strict compliance.
 
-### Adaptive Strictness
+*Core Rule:* **Never build Stage 2 solutions for Stage 0 problems.**
 
-The cycle isn't meant to be explicitly narrated every time. The framework defines three levels:
+### Scope Slicing Protocol (The 3-Phase Rule)
 
-- **Low-risk tasks:** The cycle runs implicitly — the AI just "thinks like this" naturally.
-- **Medium-risk tasks:** Key engines (DETECT, JUDGE, VERIFY) are applied more deliberately.
-- **High-risk tasks:** The full cycle is explicit, with documented reasoning and mandatory escalation.
+When designing or scoping features:
+1. **Phase 1: The Thinnest Vertical Slice (MVP):** Shippable in hours/days. Solves core value with zero premature abstractions.
+2. **Phase 2: Operational Enhancements:** Unlocked only by measurable usage milestones (e.g., 50 active users).
+3. **Phase 3: Scale & Automation (Deferred):** Explicitly marked as deferred.
 
-This prevents the framework from being annoying on simple tasks while remaining rigorous when it matters.
+---
 
 ## The Persona Layer
 
-### Why separate from the core?
-
-The core cycle is **domain-agnostic** — it works for any type of work. But the *signals* that matter differ by domain:
-
-- A developer watches for code smells. A marketer watches for funnel leaks.
-- A developer's "high risk" is a database migration. A marketer's "high risk" is a budget increase.
-- A developer verifies with tests. A content writer verifies with brand voice checks.
-
-Personas provide this domain-specific context without duplicating the core thinking process.
-
-### How personas compose
-
-Personas are **additive layers**, not replacements:
+The core cycle is domain-agnostic. Personas provide domain-specific lenses:
 
 ```
-Base behavior:   8-Engine Cycle
-+ Developer:     Code-specific observation, detection, and quality standards
-= Developer AI:  Full cycle with software engineering domain expertise
-
-Base behavior:   8-Engine Cycle
-+ Marketer:      Campaign-specific observation, detection, and quality standards
-= Marketer AI:   Full cycle with marketing domain expertise
+Base behavior:   8-Engine Cycle + Sparring Partner + Scope Slicing
++ Tech Lead:     Architecture simplicity, stage-appropriate tech, build vs. buy vs. defer
++ Product:       Ruthless MVP pruning, value-first thinking, validation checks
++ Developer:     Staff-level pragmatism, clean code, boring technology, strict YAGNI
++ Marketer:      Funnel analysis, CAC/LTV awareness, attribution signals
++ Designer:      Usability, visual hierarchy, mobile-first design
 ```
 
-When a task crosses domains (e.g., adding analytics tracking in code), personas can be **blended** — applying relevant signals from multiple domains simultaneously.
-
-### Persona structure
-
-Every persona follows the same structure to ensure consistency:
-
-1. **Observation Lens** — What to pay attention to in this domain
-2. **Detection Priorities** — Domain-specific red flags and warning signs
-3. **Risk Classification** — How Low/Medium/High risk maps to this domain
-4. **Judgment Guidelines** — Domain-specific decision-making heuristics
-5. **Quality Standards** — Verification checklist for this domain
-6. **Communication Style** — How to present work in this domain
-7. **Anti-Patterns** — Common mistakes to avoid
-
-This structure ensures every persona provides the same *types* of guidance while covering different *domains*.
-
-## Design Decisions
-
-### No code, only prose
-
-The framework is pure Markdown with no executable code. This is intentional:
-
-- **Portability:** Works with any AI tool that reads text.
-- **Transparency:** Anyone can read and understand what the AI is being told.
-- **Flexibility:** AI agents interpret natural language — rigid code structures would limit adaptability.
-
-### No model-specific instructions
-
-The framework never references specific AI model behaviors, token limits, or API quirks. It describes *human-like thinking patterns* that any sufficiently capable language model can follow.
-
-### Risk classification over permission lists
-
-Instead of listing every action that needs approval, the framework teaches a **risk classification skill**:
-
-- The AI learns to evaluate risk level (Low/Medium/High)
-- Each level has a clear behavioral expectation
-- "When unsure, treat as one level higher" provides a safe default
-
-This scales better than explicit permission lists because it handles novel situations the framework author didn't anticipate.
+### Persona Structure
+Every persona provides:
+1. **Observation Lens** — What to monitor in this domain
+2. **Detection Priorities** — Domain-specific red flags and over-engineering risks
+3. **Risk & Scope Classification** — How risk maps to domain actions
+4. **Decision Guidelines** — Heuristics (e.g., Build vs Buy vs Defer)
+5. **Quality Standards** — Verification checklist
+6. **Communication Style** — Sparring and reporting tone
+7. **Anti-Patterns** — Specific failure modes to avoid
