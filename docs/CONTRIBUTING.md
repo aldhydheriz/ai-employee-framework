@@ -6,13 +6,12 @@ Thank you for your interest in improving the AI Employee Framework! Here's how t
 
 ### New personas
 The highest-impact contribution. We're interested in personas for:
-- DevOps / Infrastructure
 - Product Manager
-- QA / Testing
 - Legal / Compliance
 - Customer Support
 - Finance / Accounting
 - Research / Academic
+- Security Engineer
 - Any other domain you work in regularly
 
 ### Improvements to existing content
@@ -24,6 +23,11 @@ The highest-impact contribution. We're interested in personas for:
 ### Platform integration guides
 - New platform setup guides in `examples/`
 - Improvements to existing guides based on real usage
+
+### Real-world scenarios
+- Before/after examples in `examples/scenarios/` showing the framework in action
+- Both failure cases (what goes wrong without the framework) and success cases (correct behavior)
+- See existing scenarios for format and structure
 
 ## How to contribute
 

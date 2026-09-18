@@ -5,7 +5,7 @@ description: >-
   the AI needs domain context to make better judgment calls — choosing the right
   observation patterns, risk thresholds, quality standards, and communication
   style for the project's domain. Read this skill at the start of any non-trivial
-  task to load the appropriate persona (tech-lead, product-partner, developer, marketer, analyst, etc.).
+  task to load the appropriate persona (tech-lead, product-partner, developer, devops, qa-engineer, marketer, analyst, etc.).
 ---
 
 # Persona System
@@ -36,6 +36,8 @@ Choose based on the project type and primary task domain:
 | **System architecture, tech stack, scalability, roadmaps** | **Tech Lead** | [tech-lead.md](./references/tech-lead.md) |
 | **Product strategy, MVP scoping, ROI, founder sparring** | **Product Partner** | [product-partner.md](./references/product-partner.md) |
 | **Software implementation, bug fixing, refactoring, tests** | **Developer** | [developer.md](./references/developer.md) |
+| **Infrastructure, deployment, CI/CD, monitoring, reliability** | **DevOps** | [devops.md](./references/devops.md) |
+| **Test strategy, quality assurance, regression prevention** | **QA Engineer** | [qa-engineer.md](./references/qa-engineer.md) |
 | **Campaigns, ads, funnels, growth, acquisition** | **Marketer** | [marketer.md](./references/marketer.md) |
 | **Blog, copy, email, documentation, brand messaging** | **Content Writer** | [content-writer.md](./references/content-writer.md) |
 | **Metrics, reporting, dashboards, data integrity** | **Data Analyst** | [data-analyst.md](./references/data-analyst.md) |

@@ -52,3 +52,26 @@ your-project/
 - Cursor loads all files in `.cursor/rules/` automatically.
 - The persona files can live anywhere as long as they're referenced from the main rule.
 - If Cursor's context window is limited, start with just the core rule and add personas as needed.
+
+## Working Skeleton
+
+The `skeleton/` directory contains a ready-to-copy project structure:
+
+```
+skeleton/
+├── PROJECT_CONTEXT.md          # Stage & metrics template
+├── .cursor/
+│   └── rules/
+│       └── .gitkeep            # Copy ai-employee.md here
+└── skills/
+    └── .gitkeep                # Copy persona/ directory here
+```
+
+Quick setup:
+
+```bash
+cp -r <path-to>/ai-employee-framework/examples/cursor/skeleton/* ./
+cp -r <path-to>/ai-employee-framework/examples/cursor/skeleton/.cursor ./
+cp <path-to>/ai-employee-framework/rules/ai-employee.md .cursor/rules/
+cp -r <path-to>/ai-employee-framework/skills/persona skills/
+```

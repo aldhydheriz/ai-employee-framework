@@ -85,3 +85,37 @@ Every persona provides:
 5. **Quality Standards** — Verification checklist
 6. **Communication Style** — Sparring and reporting tone
 7. **Anti-Patterns** — Specific failure modes to avoid
+
+---
+
+## Tripwire Triggers
+
+The Sparring Partner principle without concrete activation rules is like a fire alarm without a sensor — the principle exists, but nothing triggers it at the right moment. Tripwire Triggers solve this by providing **measurable, non-negotiable checkpoints** that force the AI to stop and challenge the current direction.
+
+### Why Triggers Are Necessary
+In practice, AI agents read behavioral rules like "challenge premature complexity" and acknowledge them — then proceed to generate exactly the premature complexity they were told to challenge. This happens because:
+1. The rule is **declarative** ("you should challenge") rather than **procedural** ("when X happens, do Y").
+2. The AI's training bias toward helpfulness and comprehensiveness overrides vague behavioral constraints.
+3. Without a concrete threshold, the AI has no objective way to determine *when* to challenge.
+
+Tripwire Triggers convert the declarative principle into procedural rules with measurable thresholds (e.g., "> 3 interconnected services," "> 2 architecture documents," "0 mentions of user count"). When a threshold is crossed, the AI is **required** to run the `[REALITY CHECK / SPARRING]` template before continuing.
+
+### Trigger Categories
+1. **Scope Tripwires** — Detect when the scope of work is disproportionate to the project's maturity.
+2. **Complexity Tripwires** — Detect when the technical complexity exceeds what the current stage justifies.
+3. **Conversation Pattern Tripwires** — Detect conversational signals that predict over-engineering (e.g., no validation questions asked, the "is this complete?" prompt interpreted as permission to add more).
+
+---
+
+## Project Context
+
+Stage-Awareness requires data. Without knowing the project's maturity stage, user count, or constraints, the AI must guess — and LLMs tend to guess "later stage" because their training data is dominated by established companies and complex systems.
+
+`PROJECT_CONTEXT.md` is an optional file that users place at their project root to provide this data explicitly. It declares:
+- **Stage** (0, 1, or 2) — Sets the AI's default complexity tolerance.
+- **Traction Metrics** (users, revenue, team size) — Provides concrete numbers for Tripwire evaluation.
+- **Priority & Constraints** — Guides Build vs. Buy vs. Defer decisions.
+- **Out of Scope** — Explicitly lists what the AI should NOT design or build.
+
+When this file is absent, the framework defaults to **assuming Stage 0** — the safest posture, since under-engineering at Stage 0 wastes hours while over-engineering wastes months.
+

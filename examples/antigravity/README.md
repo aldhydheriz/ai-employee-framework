@@ -51,3 +51,28 @@ Start a conversation with your agent in Antigravity IDE and test with a prompt l
 > *"I have an idea: let's build a distributed multi-tenant merchant portal with custom domains and double-entry financial ledgers for my 4 digital products."*
 
 The agent should **not** blindly agree or design 10 pages of architecture. It should trigger the **Sparring Partner / Reality Check**, note that building this for 4 products is premature over-engineering, and propose a **Phase 1 MVP slice** instead.
+
+## Working Skeleton
+
+The `skeleton/` directory contains a ready-to-copy project structure:
+
+```
+skeleton/
+├── AGENTS.md                   # Pre-configured entry point
+├── PROJECT_CONTEXT.md          # Stage & metrics template (fill in your values)
+└── .agents/
+    ├── rules/
+    │   └── .gitkeep            # Copy ai-employee.md here
+    └── skills/
+        └── .gitkeep            # Copy persona/ directory here
+```
+
+Quick setup from the skeleton:
+
+```bash
+# From your project root:
+cp -r <path-to>/ai-employee-framework/examples/antigravity/skeleton/* ./
+cp -r <path-to>/ai-employee-framework/examples/antigravity/skeleton/.agents ./
+cp <path-to>/ai-employee-framework/rules/ai-employee.md .agents/rules/
+cp -r <path-to>/ai-employee-framework/skills/persona .agents/skills/
+```

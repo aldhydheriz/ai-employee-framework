@@ -35,42 +35,32 @@ The framework operates in two cooperating layers:
 │   └───────────┘ └─────────────────┘ └───────────┘ └──────────┘ └──────┘ │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                              CORE LAYER                                 │
-│        (8-Engine Cycle + Sparring Partner + Scope Slicing)              │
+│    (8-Engine Cycle + Sparring Partner + Scope Slicing + Tripwires)      │
 │                                                                         │
 │   OBSERVE → UNDERSTAND (Stage-Awareness) → DETECT (Over-Engineering)    │
-│       → JUDGE → ACT (Scope Sliced) → VERIFY → ADAPT → ESCALATE/CHALLENGE │
+│    → JUDGE (Tripwire Check) → ACT (Scope Sliced) → VERIFY → ADAPT      │
+│    → ESCALATE/CHALLENGE                                                 │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-**Core Layer** — Always active. Defines *how* the AI thinks: an 8-engine cognitive cycle with Stage-Awareness and the Scope Slicing Protocol.
+**Core Layer** — Always active. Defines *how* the AI thinks: an 8-engine cognitive cycle with Stage-Awareness, the Scope Slicing Protocol, and **Tripwire Triggers** — concrete, measurable checkpoints that auto-activate sparring mode when scope or complexity thresholds are crossed.
 
-**Persona Layer** — On-demand. Sharpened lenses for specific domains (e.g., Tech Lead for stage-appropriate architecture, Product Partner for ruthless MVP validation, Developer for pragmatic code).
+**Persona Layer** — On-demand. Sharpened lenses for specific domains (e.g., Tech Lead for stage-appropriate architecture, Product Partner for ruthless MVP validation, Developer for pragmatic code, DevOps for infrastructure judgment).
+
+**Project Context** — Optional `PROJECT_CONTEXT.md` file at the project root that declares the project's stage, traction metrics, and constraints. When present, the AI calibrates all decisions to the declared context instead of guessing.
 
 ---
 
 ## Quick Start
 
-### Option 1: One-Line Install (Recommended)
-
-Run inside your project's root directory:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/aldhydheriz/ai-employee-framework/main/install.sh | bash
-```
-
-This automatically:
-1. Creates `AGENTS.md` at your project root (or safely appends if you already have one).
-2. Copies rules to `.agents/rules/ai-employee.md`.
-3. Installs all domain personas into `.agents/skills/persona/`.
-
-### Option 2: Manual Setup
+### 1. Copy into your project
 
 ```bash
 # Clone the repository
 git clone https://github.com/aldhydheriz/ai-employee-framework.git
 
-# Copy root rule and personas
-cp ai-employee-framework/AGENTS.md your-project/AGENTS.md
+# Set up project entry point and personas
+cp ai-employee-framework/rules/ai-employee.md your-project/AGENTS.md
 mkdir -p your-project/.agents/rules your-project/.agents/skills
 cp ai-employee-framework/rules/ai-employee.md your-project/.agents/rules/
 cp -r ai-employee-framework/skills/persona your-project/.agents/skills/
@@ -88,9 +78,11 @@ See [Platform Setup](#platform-setup) for platform-specific details.
 
 | Persona | Domain | What it adds |
 |---------|--------|-------------|
-| **[Tech Lead](skills/persona/references/tech-lead.md)** | Architecture & Tech Strategy | Pragmatic architecture, Stage Gate checks, Boring Technology, Build vs Buy vs Defer |
-| **[Product Partner](skills/persona/references/product-partner.md)** | Product & Founder Sparring | Ruthless MVP pruning, value-first thinking, Day 0 sanity checks, CAC/LTV awareness |
+| **[Tech Lead](skills/persona/references/tech-lead.md)** | Architecture & Tech Strategy | Pragmatic architecture, Stage Gate checks, Boring Technology, Build vs Buy vs Defer, Maintenance Projection |
+| **[Product Partner](skills/persona/references/product-partner.md)** | Product & Founder Sparring | Ruthless MVP pruning, value-first thinking, Day 0 sanity checks, CAC/LTV awareness, Effort vs Impact filter |
 | **[Developer](skills/persona/references/developer.md)** | Software Engineering | Staff-level pragmatism, strict YAGNI, clean code, boundary tests, eliminating bloat |
+| **[DevOps](skills/persona/references/devops.md)** | Infrastructure & Operations | Blast radius thinking, boring infrastructure, 2 AM test, stage-appropriate ops, cost-proportional infra |
+| **[QA Engineer](skills/persona/references/qa-engineer.md)** | Testing & Quality | Risk-proportional testing, test pyramid guidance, confidence over coverage, regression prevention |
 | **[Marketer](skills/persona/references/marketer.md)** | Marketing & Growth | Funnel analysis, budget judgment, attribution awareness, performance signal detection |
 | **[Content Writer](skills/persona/references/content-writer.md)** | Content Creation | Brand voice matching, SEO awareness, audience-appropriate language, structural clarity |
 | **[Data Analyst](skills/persona/references/data-analyst.md)** | Data & Reporting | Statistical rigor, data quality detection, methodology transparency, actionable insights |
@@ -152,6 +144,18 @@ cp rules/ai-employee.md your-project/.github/copilot-instructions.md
 
 ---
 
+## Real-World Scenarios
+
+The `examples/scenarios/` directory contains before/after examples showing how the framework changes AI behavior in practice:
+
+| Scenario | What It Shows |
+|----------|---------------|
+| [Merchant Architecture Trap](examples/scenarios/01-merchant-architecture-trap.md) | AI builds 7 architecture docs for 0 merchants — how Tripwire Triggers would have stopped it |
+| [Premature Database Design](examples/scenarios/02-premature-database-design.md) | AI designs 5 database tables for 3 beta users — how Stage-Awareness prevents wasted engineering |
+| [Correct MVP Slicing](examples/scenarios/03-correct-mvp-slicing.md) | AI correctly identifies the thinnest slice, validates demand, and defers complexity |
+
+---
+
 ## How It's Different
 
 | Traditional AI Assistants | AI Employee Framework |
@@ -168,7 +172,7 @@ cp rules/ai-employee.md your-project/.github/copilot-instructions.md
 ```
 ai-employee-framework/
 ├── rules/
-│   └── ai-employee.md              # Core 8-Engine Cycle + Sparring + Scope Slicing
+│   └── ai-employee.md              # Core 8-Engine Cycle + Sparring + Scope Slicing + Tripwires
 ├── skills/
 │   └── persona/
 │       ├── SKILL.md                 # Persona system orchestrator
@@ -176,15 +180,22 @@ ai-employee-framework/
 │           ├── tech-lead.md         # Systems architecture & tech strategy
 │           ├── product-partner.md   # Product & founder sparring
 │           ├── developer.md         # Software engineering (Staff-level pragmatism)
+│           ├── devops.md            # Infrastructure & operational reliability
+│           ├── qa-engineer.md       # Testing strategy & quality assurance
 │           ├── marketer.md          # Growth & performance marketing
 │           ├── content-writer.md    # Content creation & brand voice
 │           ├── data-analyst.md      # Data analysis & metrics
 │           └── designer.md          # UI/UX & visual hierarchy
-├── examples/                        # Platform-specific setup guides
-│   ├── antigravity/
-│   ├── cursor/
-│   ├── copilot/
-│   └── generic/
+├── examples/
+│   ├── scenarios/                   # Real-world before/after behavioral examples
+│   │   ├── 01-merchant-architecture-trap.md
+│   │   ├── 02-premature-database-design.md
+│   │   └── 03-correct-mvp-slicing.md
+│   ├── antigravity/                 # Google Antigravity IDE setup
+│   ├── cursor/                      # Cursor setup
+│   ├── copilot/                     # GitHub Copilot setup
+│   └── generic/                     # Generic / API setup
+├── PROJECT_CONTEXT.md               # Template for project stage declaration
 └── docs/
     ├── ARCHITECTURE.md              # Design philosophy & cognitive cycle
     ├── CREATING_PERSONAS.md         # Guide to writing custom personas
