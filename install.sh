@@ -9,7 +9,7 @@ set -e
 TARGET_DIR="${1:-.}"
 REPO_RAW="https://raw.githubusercontent.com/aldhydheriz/ai-employee-framework/main"
 
-echo "🤖 Installing AI Employee Framework to: $TARGET_DIR"
+echo "==> Installing AI Employee Framework to: $TARGET_DIR"
 
 # Ensure target directory exists
 mkdir -p "$TARGET_DIR/.agents/rules"
@@ -38,10 +38,10 @@ install_file() {
 # 1. Install AGENTS.md at root
 if [ -f "$TARGET_DIR/AGENTS.md" ]; then
   if grep -q "AI Employee Behavioral Framework" "$TARGET_DIR/AGENTS.md"; then
-    echo "  ℹ️  AGENTS.md already contains AI Employee Framework. Updating rules..."
+    echo "    [INFO] AGENTS.md already contains AI Employee Framework. Updating rules..."
     install_file "rules/ai-employee.md" "$TARGET_DIR/.agents/rules/ai-employee.md"
   else
-    echo "  ⚠️  Existing AGENTS.md detected. Appending AI Employee Framework..."
+    echo "    [WARN] Existing AGENTS.md detected. Appending AI Employee Framework..."
     echo -e "\n\n" >> "$TARGET_DIR/AGENTS.md"
     if [ "$IS_LOCAL" = true ]; then
       cat "$SCRIPT_DIR/rules/ai-employee.md" >> "$TARGET_DIR/AGENTS.md"
@@ -50,7 +50,7 @@ if [ -f "$TARGET_DIR/AGENTS.md" ]; then
     fi
   fi
 else
-  echo "  📄 Creating AGENTS.md at project root..."
+  echo "    [+] Creating AGENTS.md at project root..."
   install_file "rules/ai-employee.md" "$TARGET_DIR/AGENTS.md"
 fi
 
@@ -58,7 +58,7 @@ fi
 install_file "rules/ai-employee.md" "$TARGET_DIR/.agents/rules/ai-employee.md"
 
 # 3. Install persona skills
-echo "  🎭 Installing domain personas (Tech Lead, Product Partner, Developer, Marketer, etc.)..."
+echo "    [+] Installing domain personas (Tech Lead, Product Partner, Developer, etc.)..."
 install_file "skills/persona/SKILL.md" "$TARGET_DIR/.agents/skills/persona/SKILL.md"
 
 PERSONAS=(
@@ -76,9 +76,9 @@ for p in "${PERSONAS[@]}"; do
 done
 
 echo ""
-echo "✅ AI Employee Framework successfully installed!"
-echo "   - Root Rule:    $TARGET_DIR/AGENTS.md"
-echo "   - Rules Dir:    $TARGET_DIR/.agents/rules/ai-employee.md"
-echo "   - Personas:     $TARGET_DIR/.agents/skills/persona/"
+echo "==> [OK] AI Employee Framework successfully installed."
+echo "    - Root Rule:    $TARGET_DIR/AGENTS.md"
+echo "    - Rules Dir:    $TARGET_DIR/.agents/rules/ai-employee.md"
+echo "    - Personas:     $TARGET_DIR/.agents/skills/persona/"
 echo ""
-echo "💡 Your AI agent now possesses Stage-Awareness, the Sparring Partner instinct, and the Scope Slicing Protocol."
+echo "Stage-Awareness, Sparring Partner, and Scope Slicing are now active."
