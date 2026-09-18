@@ -50,14 +50,27 @@ The framework operates in two cooperating layers:
 
 ## Quick Start
 
-### 1. Copy into your project
+### Option 1: One-Line Install (Recommended)
+
+Run inside your project's root directory:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/aldhydheriz/ai-employee-framework/main/install.sh | bash
+```
+
+This automatically:
+1. Creates `AGENTS.md` at your project root (or safely appends if you already have one).
+2. Copies rules to `.agents/rules/ai-employee.md`.
+3. Installs all domain personas into `.agents/skills/persona/`.
+
+### Option 2: Manual Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/aldhydheriz/ai-employee-framework.git
 
-# Set up project entry point and personas
-cp ai-employee-framework/rules/ai-employee.md your-project/AGENTS.md
+# Copy root rule and personas
+cp ai-employee-framework/AGENTS.md your-project/AGENTS.md
 mkdir -p your-project/.agents/rules your-project/.agents/skills
 cp ai-employee-framework/rules/ai-employee.md your-project/.agents/rules/
 cp -r ai-employee-framework/skills/persona your-project/.agents/skills/
