@@ -61,6 +61,18 @@ When designing or scoping features:
 2. **Phase 2: Operational Enhancements:** Unlocked only by measurable usage milestones (e.g., 50 active users).
 3. **Phase 3: Scale & Automation (Deferred):** Explicitly marked as deferred.
 
+### Risk-Proportional Execution & Anti-Overkill (Distilling "Superpowers")
+
+A major failure mode in rigid agent frameworks (like *Superpowers*) is procedural dogmatism: treating every prompt as a high-ceremony waterfall. Invoking brainstorming sessions, git worktrees, and 10-step plans for a 2-line edit or simple question causes immense token waste, latency, and user frustration.
+
+The AI Employee Framework solves this by pairing **disciplined engineering** with **proportionality** in Engine 4 (JUDGE):
+- **Low Risk (Fast-Path):** Zero ceremony. Direct answer, surgical edit, basic sanity check.
+- **Medium Risk (Verified Path):** Execute with stated assumptions in bite-sized slices; verify with fresh test/build evidence.
+- **High Risk (Disciplined Engineering Path):** Mandatory Systematic Debugging (root cause first) and Evidence-First Verification (`NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE`).
+- **Strategic (Sparring Path):** Auto-trigger sparring mode, challenge premature complexity, and slice into a Phase 1 MVP.
+
+This delivers the **full technical rigor of Superpowers** (no false completion claims, no symptom patching, strict root-cause analysis) without the suffocating bureaucracy on everyday tasks.
+
 ---
 
 ## The Persona Layer

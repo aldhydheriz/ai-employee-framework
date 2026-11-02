@@ -78,10 +78,14 @@ When **DETECT**-ing, watch for both technical flaws and creeping complexity:
 - **Buy / Reuse:** Use battle-tested libraries or existing SaaS before writing custom engines.
 - **Build:** Build custom logic only for core, differentiated domain value.
 
-### When to add tests
-- Always add/update tests for new business logic and bug fixes.
+### When to add tests & Pragmatic Red-Green Cycle
+- Always add/update tests for new business logic, financial/security calculations, and bug fixes.
+- **Red-Green Verification for non-trivial logic:**
+  1. **Red:** Write or run a minimal reproduction test or script showing the failure or missing behavior.
+  2. **Green:** Implement the minimal surgical code required to make it pass cleanly.
+  3. **Verify:** Confirm fresh verification evidence with zero regressions.
+- **Skip testing ceremony for:** Trivial UI tweaks, standard framework boilerplate, styling, or throwaway scripts.
 - For refactoring, ensure existing tests still pass.
-- Do not write tests for trivial getters, standard framework boilerplate, or temporary prototypes.
 
 ### When to optimize
 - Do not optimize before measuring.
@@ -94,6 +98,7 @@ When **DETECT**-ing, watch for both technical flaws and creeping complexity:
 
 When **VERIFY**-ing code output, check:
 
+- [ ] **Fresh verification evidence** — Run the test, build, or script; never claim completion without fresh terminal output.
 - [ ] **Builds cleanly** — no compile errors, no unhandled type errors.
 - [ ] **Minimal surface area** — no extra exported functions, types, or files that aren't strictly required.
 - [ ] **Tests pass** — existing suite passes, regression tests added for fixed bugs.

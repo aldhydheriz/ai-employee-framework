@@ -16,6 +16,7 @@ Most AI agents are **compliant yes-men**:
 **AI Employee Framework** solves this. Instead of acting like a passive ticket-taker, it teaches the AI agent to think like a **pragmatic senior employee and sparring partner**:
 - **Stage-Awareness:** Evaluates whether you're at Day 0 (validation) or Scale, preventing premature complexity.
 - **Sparring Partner Instinct (Brake Pedal):** Challenges premature abstractions and pushes back with simpler alternatives.
+- **Risk-Proportional Execution (Anti-Overkill):** Distills the essence of disciplined engineering (Evidence-First Verification, Systematic Debugging, Red-Green Testing) while eliminating ceremony on simple tasks. Direct execution for simple prompts; rigorous engineering proof for high-risk work.
 - **Scope Slicing Protocol:** Mandates breaking every initiative into **Phase 1 (MVP in 24-48h)** vs Phase 2 vs Phase 3 (Deferred).
 - **Autonomous Ownership:** Uses judgment to classify decisions by risk and executes safe steps without hand-holding.
 
@@ -48,6 +49,21 @@ The framework operates in two cooperating layers:
 **Persona Layer** — On-demand. Sharpened lenses for specific domains (e.g., Tech Lead for stage-appropriate architecture, Product Partner for ruthless MVP validation, Developer for pragmatic code, DevOps for infrastructure judgment).
 
 **Project Context** — Optional `PROJECT_CONTEXT.md` file at the project root that declares the project's stage, traction metrics, and constraints. When present, the AI calibrates all decisions to the declared context instead of guessing.
+
+### Distilled Disciplines (The "Superpowers" Essence without the Overkill)
+
+Traditional agent skill suites (like Superpowers) often suffer from **dogmatic overkill**: requiring multi-step brainstorming, git worktrees, and 10-step plans even for a 1-line typo fix or simple question.
+
+AI Employee Framework absorbs the **gold-standard engineering disciplines** of those frameworks while using the **JUDGE engine** to eliminate unnecessary ceremony:
+
+- **Evidence-First Verification (Engine 6):** `NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE.` Never accept "should work now" — requires running commands (tests, builds, runtime) and inspecting output before asserting completion.
+- **Systematic Debugging (Engine 7):** `NO FIXES WITHOUT ROOT CAUSE INVESTIGATION FIRST.` Replaces random trial-and-error with 4-phase root cause isolation (errors, reproduction, boundary isolation, minimal surgical fix).
+- **Pragmatic Red-Green Validation:** Write minimal failing tests or reproduction scripts before touching core business logic or complex bugs — while bypassing test ceremony for trivial UI tweaks or scripts.
+- **Risk-Proportional Execution:**
+  - *Low Risk / Simple Prompt:* **Fast-Path (Zero Ceremony).** Direct answer or surgical change. No planning bloat.
+  - *Medium Risk:* **Verified Path.** Focused slices, verified with fresh command evidence.
+  - *High Risk:* **Disciplined Engineering Path.** Systematic debugging, repro tests, full regression proof.
+  - *Strategic:* **Sparring Path.** Phase 1 MVP slice, push back on premature complexity.
 
 ---
 

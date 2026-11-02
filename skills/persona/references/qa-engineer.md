@@ -88,6 +88,7 @@ When **DETECT**-ing, watch for quality and testing red flags:
 
 When **VERIFY**-ing test output, check:
 
+- [ ] **Fresh Evidence Rule** — Never assert that a suite passes or a bug is resolved based on historical runs or assumptions. Always provide fresh terminal execution output with exact counts and clean exit code.
 - [ ] **Tests are independent** — Each test can run in isolation without depending on other tests' state or execution order.
 - [ ] **Tests verify behavior, not implementation** — Assertions check observable outputs and side effects, not internal method calls or private state.
 - [ ] **Critical paths are covered** — Payment, authentication, and core business flows have at least one happy-path and one error-path test.
